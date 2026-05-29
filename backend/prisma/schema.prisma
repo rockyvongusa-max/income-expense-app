@@ -3,24 +3,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-enum TransactionType {
-  INCOME
-  EXPENSE
-}
-
 model Transaction {
-  id             Int             @id @default(autoincrement())
-  type           TransactionType
+  id             Int      @id @default(autoincrement())
+  type           String   // INCOME or EXPENSE
   amount         Float
   category       String
   description    String?
   date           DateTime
   attachmentUrl  String?
-  createdAt      DateTime        @default(now())
+  createdAt      DateTime @default(now())
 
   @@map("transactions")
 }

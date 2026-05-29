@@ -10,47 +10,47 @@ interface TransactionTableProps {
 export default function TransactionTable({ transactions, showActions = false }: TransactionTableProps) {
   if (transactions.length === 0) {
     return (
-      <div className="bg-surface-elevated rounded-lg p-8 border border-gray-800 text-center">
-        <p className="text-gray-400">No transactions found</p>
+      <div className="card p-8 text-center">
+        <p className="text-slate-400 text-sm font-medium">No transactions found</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-surface-elevated rounded-lg border border-gray-800 overflow-hidden">
+    <div className="overflow-hidden">
       <table className="w-full">
-        <thead className="bg-gray-900">
-          <tr>
-            <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Date</th>
-            <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Type</th>
-            <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Category</th>
-            <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Description</th>
-            <th className="px-6 py-4 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">Amount</th>
+        <thead>
+          <tr className="border-b border-gray-100">
+            <th className="pb-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wide">Date</th>
+            <th className="pb-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wide">Type</th>
+            <th className="pb-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wide">Category</th>
+            <th className="pb-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wide hidden sm:table-cell">Description</th>
+            <th className="pb-3 text-right text-xs font-semibold text-slate-400 uppercase tracking-wide">Amount</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-800">
+        <tbody className="divide-y divide-gray-50">
           {transactions.map((tx) => (
-            <tr key={tx.id} className="hover:bg-gray-900/50 transition-colors">
-              <td className="px-6 py-4 whitespace-nowrap text-sm">
+            <tr key={tx.id} className="group hover:bg-slate-50/70 transition-colors">
+              <td className="py-3.5 pr-4 whitespace-nowrap text-sm text-slate-600 font-medium">
                 {new Date(tx.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="py-3.5 pr-4 whitespace-nowrap">
                 <span
-                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${
                     tx.type === 'INCOME'
-                      ? 'bg-income-green/20 text-income-green'
-                      : 'bg-expense-red/20 text-expense-red'
+                      ? 'bg-emerald-50 text-emerald-700'
+                      : 'bg-red-50 text-red-700'
                   }`}
                 >
-                  {tx.type === 'INCOME' ? 'Income' : 'Expense'}
+                  {tx.type === 'INCOME' ? '↑ Income' : '↓ Expense'}
                 </span>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm">{tx.category}</td>
-              <td className="px-6 py-4 text-sm text-gray-300 max-w-xs truncate">
-                {tx.description || '-'}
+              <td className="py-3.5 pr-4 whitespace-nowrap text-sm text-slate-700 font-medium">{tx.category}</td>
+              <td className="py-3.5 pr-4 whitespace-nowrap text-sm text-slate-500 max-w-[200px] truncate hidden sm:table-cell">
+                {tx.description || <span className="text-slate-300 italic">—</span>}
               </td>
-              <td className={`px-6 py-4 whitespace-nowrap text-sm font-semibold text-right ${
-                tx.type === 'INCOME' ? 'text-income-green' : 'text-expense-red'
+              <td className={`py-3.5 text-right text-sm font-bold whitespace-nowrap ${
+                tx.type === 'INCOME' ? 'text-emerald-600' : 'text-red-600'
               }`}>
                 {tx.type === 'INCOME' ? '+' : '-'}${tx.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </td>

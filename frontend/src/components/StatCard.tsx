@@ -5,16 +5,26 @@ interface StatCardProps {
   value: string;
   subtitle?: string;
   type?: 'default' | 'income' | 'expense';
+  gradientClass?: string;
+  icon?: string;
 }
 
-export default function StatCard({ title, value, subtitle, type = 'default' }: StatCardProps) {
-  const colorClass = type === 'income' ? 'text-income-green' : type === 'expense' ? 'text-expense-red' : 'text-white';
-
+export default function StatCard({ title, value, subtitle, type = 'default', gradientClass = '', icon }: StatCardProps) {
   return (
-    <div className="bg-surface-elevated rounded-lg p-6 border border-gray-800">
-      <p className="text-sm text-gray-400 mb-2">{title}</p>
-      <p className={`text-2xl font-bold font-display ${colorClass}`}>{value}</p>
-      {subtitle && <p className="text-xs text-gray-500 mt-2">{subtitle}</p>}
+    <div
+      className={`card rounded-2xl p-6 flex flex-row items-center gap-5 shadow-md ${gradientClass}`}
+      style={{ minHeight: 120 }}
+    >
+      <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-2xl shrink-0">
+        {icon || (type === 'income' ? '↑' : type === 'expense' ? '↓' : '•')}
+      </div>
+      <div className="flex flex-col gap-0.5">
+        <p className={`text-sm font-semibold ${gradientClass ? 'text-white/80' : 'text-slate-400'}`}>{title}</p>
+        <p className={`text-2xl font-extrabold tracking-tight ${gradientClass ? 'text-white' : 'text-slate-800'}`}>{value}</p>
+        {subtitle && (
+          <p className={`text-xs font-medium ${gradientClass ? 'text-white/60' : 'text-slate-400'}`}>{subtitle}</p>
+        )}
+      </div>
     </div>
   );
 }

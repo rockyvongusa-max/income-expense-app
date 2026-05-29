@@ -34,8 +34,8 @@ app.get('/api/transactions', async (req, res) => {
 
     if (search) {
       where.OR = [
-        { category: { contains: search, mode: 'insensitive' } },
-        { description: { contains: search, mode: 'insensitive' } },
+        { category: { contains: search } },
+        { description: { contains: search } },
       ];
     }
 

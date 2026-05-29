@@ -14,29 +14,30 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-60 min-h-screen bg-surface-elevated border-r border-gray-800 fixed left-0 top-0 flex flex-col">
+    <aside className="w-64 h-screen bg-gray-50 border-r border-gray-200 flex flex-col shrink-0 fixed left-0 top-0 z-30">
       {/* Logo */}
-      <div className="h-16 flex items-center px-6 border-b border-gray-800">
-        <span className="text-xl font-bold font-display">💰 MoneyTrack</span>
+      <div className="h-16 flex items-center px-6 border-b border-gray-100">
+        <span className="text-xl font-extrabold">💰</span>
+        <span className="ml-2.5 text-lg font-extrabold text-indigo-600 tracking-tight">MoneyTrack</span>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-6 px-3">
-        <ul className="space-y-2">
+      <nav className="flex-1 py-5 px-4">
+        <ul className="space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-full transition-colors ${
+                  className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all text-sm font-semibold ${
                     isActive
-                      ? 'bg-primary text-white'
-                      : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                      ? 'bg-indigo-50 text-indigo-700 shadow-sm'
+                      : 'text-gray-500 hover:bg-white hover:text-gray-700'
                   }`}
                 >
-                  <span className="text-lg">{item.icon}</span>
-                  <span className="font-medium">{item.label}</span>
+                  <span className="text-base">{item.icon}</span>
+                  <span>{item.label}</span>
                 </Link>
               </li>
             );
@@ -45,8 +46,8 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-gray-800">
-        <p className="text-xs text-gray-500 text-center">v1.0.0</p>
+      <div className="p-5 border-t border-gray-100">
+        <p className="text-xs text-gray-400 font-medium text-center">v1app · 2026</p>
       </div>
     </aside>
   );

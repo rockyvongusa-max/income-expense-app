@@ -1,14 +1,8 @@
--- Seed data for Income & Expense Tracker
--- 10 sample transactions in current month (May 2026)
-
--- INCOME transactions
-INSERT INTO transactions (type, amount, category, description, date, "createdAt") VALUES
+-- Seed data for Income & Expense Tracker (SQLite)
+INSERT INTO transactions (type, amount, category, description, date, createdAt) VALUES
 ('INCOME', 5500.00, 'Salary', 'Monthly salary from tech corp', '2026-05-01', '2026-05-01T09:00:00Z'),
 ('INCOME', 1200.00, 'Freelance', 'Website design project', '2026-05-15', '2026-05-15T14:30:00Z'),
-('INCOME', 350.00, 'Investment', 'Stock dividend payout', '2026-05-20', '2026-05-20T10:00:00Z');
-
--- EXPENSE transactions
-INSERT INTO transactions (type, amount, category, description, date, "createdAt") VALUES
+('INCOME', 350.00, 'Investment', 'Stock dividend payout', '2026-05-20', '2026-05-20T10:00:00Z'),
 ('EXPENSE', 1200.00, 'Rent', 'Monthly rent payment', '2026-05-03', '2026-05-03T08:00:00Z'),
 ('EXPENSE', 85.50, 'Groceries', 'Weekly groceries at supermarket', '2026-05-07', '2026-05-07T17:45:00Z'),
 ('EXPENSE', 120.00, 'Utilities', 'Electricity bill', '2026-05-10', '2026-05-10T11:00:00Z'),
